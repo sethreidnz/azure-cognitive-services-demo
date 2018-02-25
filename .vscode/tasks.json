@@ -9,7 +9,11 @@
                 "build",
                 "${workspaceFolder}/src/api/CognitiveServicesDemo.Api.csproj"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",           
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }
