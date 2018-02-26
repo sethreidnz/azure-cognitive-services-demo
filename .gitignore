@@ -1,4 +1,6 @@
 
+src/api/wwwroot/
+
 # Created by https://www.gitignore.io/api/node,csharp,visualstudio,visualstudiocode
 
 ### Csharp ###
