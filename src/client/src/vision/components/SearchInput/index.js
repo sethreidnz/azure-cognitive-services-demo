@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./SearchInput.css";
 
 export class SearchInput extends Component {
   state = {
@@ -8,7 +9,7 @@ export class SearchInput extends Component {
   handleChange = event => {
     var searchText = event.target.value;
     if (this.timeout) clearTimeout(this.timeout);
-    this.setState({ searchQuery: searchText })
+    this.setState({ searchQuery: searchText });
     this.timeout = setTimeout(() => {
       const { search } = this.props;
       search(searchText);
@@ -17,11 +18,14 @@ export class SearchInput extends Component {
   render() {
     const {} = this.props;
     return (
-      <input
-        type="search"
-        value={this.state.searchQuery}
-        onChange={this.handleChange}
-      />
+      <div className="search-input control">
+        <input
+          className="input"
+          type="search"
+          value={this.state.searchQuery}
+          onChange={this.handleChange}
+        />
+      </div>
     );
   }
 }

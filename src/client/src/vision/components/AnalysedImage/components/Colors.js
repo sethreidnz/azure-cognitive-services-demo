@@ -2,7 +2,7 @@ import React from "react";
 
 export const Colors = ({ colors }) => (
   <div>
-    <h3>Colors:</h3>
+    <h3 className="title title is-4">Colors:</h3>
     <div id="meta" class="field is-grouped is-grouped-multiline">
       <div class="control">
         <div class="tags has-addons">
