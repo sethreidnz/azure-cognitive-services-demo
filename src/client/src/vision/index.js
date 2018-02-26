@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import qs from "qs";
-import { Loader } from "../components/loader";
 import { imageSearch } from "../api/bing";
 import "./Vision.css";
 
@@ -53,7 +52,6 @@ export class Vision extends Component {
     }
   };
   render() {
-    const { hasLoaded } = this.props;
     const {
       searchText,
       isSearching,

@@ -1,6 +1,5 @@
 import React from "react";
 import "./AnalysedImage.css";
-import { formatConfidenceAsPercentage } from "../../../utility";
 
 import { Categories } from "./components/Categories";
 import { Colors } from "./components/Colors";

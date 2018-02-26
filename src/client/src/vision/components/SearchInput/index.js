@@ -7,16 +7,15 @@ export class SearchInput extends Component {
   };
   timeout = 0;
   handleChange = event => {
+    const { search } = this.props;
     var searchText = event.target.value;
     if (this.timeout) clearTimeout(this.timeout);
     this.setState({ searchQuery: searchText });
     this.timeout = setTimeout(() => {
-      const { search } = this.props;
       search(searchText);
     }, 500);
   };
   render() {
-    const {} = this.props;
     return (
       <div className="search-input control">
         <input

@@ -1,9 +1,5 @@
 import React from "react";
-import classnames from "classnames";
-import {
-  formatConfidenceAsPercentage,
-  getConfidenceColorClass
-} from "../../../../utility";
+import { formatConfidenceAsPercentage } from "../../../../utility";
 
 export const ImageDisplay = ({ selectedImage, description }) => (
   <div>

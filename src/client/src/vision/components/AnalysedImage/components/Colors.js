@@ -7,35 +7,35 @@ export const Colors = ({ colors }) => (
       <div class="control">
         <div class="tags has-addons">
           <span class="tag">Accent Color</span>
-          <a class="tag" style={{ backgroundColor: `#${colors.accentColor}` }}>
+          <span class="tag" style={{ backgroundColor: `#${colors.accentColor}` }}>
             &nbsp;&nbsp;
-          </a>
+          </span>
         </div>
       </div>
       <div class="control">
         <div class="tags has-addons">
           <span class="tag">Dominant Background</span>
-          <a
+          <span
             class="tag"
             style={{
               backgroundColor: `${colors.dominantColorBackground.toLowerCase()}`
             }}
           >
             &nbsp;&nbsp;
-          </a>
+          </span>
         </div>
       </div>
       <div class="control">
         <div class="tags has-addons">
           <span class="tag">Dominant Foreground</span>
-          <a
+          <span
             class="tag"
             style={{
               backgroundColor: `${colors.dominantColorForeground.toLowerCase()}`
             }}
           >
             &nbsp;&nbsp;
-          </a>
+          </span>
         </div>
       </div>
     </div>

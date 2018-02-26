@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import classnames from 'classnames';
 import "./ImageListItem.css";
 
-export const ImageListItem = ({ imageUrl, isSelected, onClick }) => {
+export const ImageListItem = ({ imageUrl, imageAlt, isSelected, onClick }) => {
   const classNames = classnames({ 
     'image-list-item': true,
     'column': true,
@@ -10,7 +10,7 @@ export const ImageListItem = ({ imageUrl, isSelected, onClick }) => {
   });
   return (
     <li className={classNames} onClick={onClick}>
-      <img src={imageUrl} />
+      <img src={imageUrl} alt={imageAlt} />
     </li>
   );
 };

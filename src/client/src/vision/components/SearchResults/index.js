@@ -25,6 +25,7 @@ export const SearchResults = ({
           <ImageListItem
             key={image.thumbnailUrl}
             imageUrl={getThumbnailUrl(image)}
+            imageAlt={image.name}
             onClick={() => onImageClick(image)}
             isSelected={selectedImage && selectedImage.id === image.id}
           />
