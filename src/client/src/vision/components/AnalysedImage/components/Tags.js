@@ -13,14 +13,14 @@ export const Tags = ({ tags }) => (
             <div class="control">
               <div class="tags has-addons">
                 <span class="tag">{tag.name}</span>
-                <a
+                <span
                   class={classnames({
                     tag: true,
                     [`${getConfidenceColorClass(tag.confidence)}`]: true
                   })}
                 >
                   {formatConfidenceAsPercentage(tag.confidence)}
-                </a>
+                </span>
               </div>
             </div>
           ))}
