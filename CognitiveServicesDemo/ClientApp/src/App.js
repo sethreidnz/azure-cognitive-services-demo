@@ -4,7 +4,7 @@ import "bulma/css/bulma.css";
 import "./App.css";
 import { getCognitiveServicesConfig } from "./api/config";
 
-import { Navbar } from "./components/navbar";
+import { Navbar } from "./components/Navbar";
 import { Vision } from "./vision";
 
 class App extends Component {
