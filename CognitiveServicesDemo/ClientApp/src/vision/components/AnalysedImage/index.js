@@ -4,7 +4,7 @@ import "./AnalysedImage.css";
 import { Categories } from "./components/Categories";
 import { Colors } from "./components/Colors";
 import { ImageDisplay } from "./components/ImageDisplay";
-import { Loader } from "../../../components/loader";
+import { Loader } from "../../../components/Loader";
 import { Tags } from "./components/Tags";
 
 export const AnalysedImage = ({ selectedImage, isAnalysing, data }) => {

@@ -3,7 +3,7 @@ import "./SearchResults.css";
 
 import { ImageList } from "../ImageList";
 import { ImageListItem } from "../ImageListItem";
-import { Loader } from "../../../components/loader";
+import { Loader } from "../../../components/Loader";
 
 export const SearchResults = ({
   isSearching,
