@@ -3,6 +3,7 @@ import qs from "qs";
 import { imageSearch } from "../api/bing";
 import "./Vision.css";
 
+import { Notification } from "../components/Notification";
 import { SearchInput } from "./components/SearchInput";
 import { SearchResults } from "./components/SearchResults";
 import { AnalysedImage } from "./components/AnalysedImage";
@@ -16,19 +17,32 @@ export class Vision extends Component {
     selectedImage: null,
     searchText: null
   };
+  configIsValid = () => {
+    const {
+      config: { computerVision, bingSearch }
+    } = this.props;
+    return computerVision.key && computerVision.region && bingSearch.key;
+  }
   getThumbnailUrl = image => {
     return `${image.thumbnailUrl}&${qs.stringify({ w: 300, h: 300 })}`;
   };
   selectImage = async image => {
-    const { config: { defaultRegion, computerVision: { key, region } } } = this.props;
+    const {
+      config: { defaultRegion, computerVision: { key, region } }
+    } = this.props;
     this.setState({
       selectedImage: image,
       isAnalysing: true
     });
-    const analysedImageData = await analyseImage(image.contentUrl, key, region ? region : defaultRegion, {
-      visualFeatures: "Categories,Tags,Description,Faces,ImageType,Color",
-      details: "Celebrities,Landmarks"
-    });
+    const analysedImageData = await analyseImage(
+      image.contentUrl,
+      key,
+      region ? region : defaultRegion,
+      {
+        visualFeatures: "Categories,Tags,Description,Faces,ImageType,Color",
+        details: "Celebrities,Landmarks"
+      }
+    );
     this.setState({
       selectedImage: image,
       isAnalysing: false,
@@ -48,7 +62,11 @@ export class Vision extends Component {
         searchText
       });
     } else {
-      this.setState({ isSearching: false, searchResults: null, searchText: null });
+      this.setState({
+        isSearching: false,
+        searchResults: null,
+        searchText: null
+      });
     }
   };
   render() {
@@ -60,6 +78,9 @@ export class Vision extends Component {
       searchResults,
       analysisData
     } = this.state;
+    if (!this.configIsValid()) {
+      return <Notification type="danger" text="Please go to the readme and configure the your user secrets for Computer Vision and Bing Search API"/>
+    }
     return (
       <div
         className="vision"
@@ -83,7 +104,13 @@ export class Vision extends Component {
           getThumbnailUrl={this.getThumbnailUrl}
           isSearching={isSearching}
         />
-        { selectedImage && <AnalysedImage selectedImage={selectedImage} isAnalysing={isAnalysing} data={analysisData} /> }
+        {selectedImage && (
+          <AnalysedImage
+            selectedImage={selectedImage}
+            isAnalysing={isAnalysing}
+            data={analysisData}
+          />
+        )}
       </div>
     );
   }

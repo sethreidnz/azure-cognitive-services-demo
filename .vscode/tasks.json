@@ -5,15 +5,15 @@
             "label": "build",
             "command": "dotnet",
             "type": "process",
-            "args": [
-                "build",
-                "${workspaceFolder}/src/api/CognitiveServicesDemo.Api.csproj"
-            ],
-            "problemMatcher": "$msCompile",           
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "args": [
+                "build",
+                "${workspaceFolder}/CognitiveServicesDemo/CognitiveServicesDemo.csproj"
+            ],
+            "problemMatcher": "$msCompile"
         }
     ]
 }

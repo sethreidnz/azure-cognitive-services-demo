@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CognitiveServicesDemo.Api.Options;
+using CognitiveServicesDemo.Options;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
-namespace CognitiveServicesDemo.Api.Controllers
+namespace CognitiveServicesDemo.Controllers
 {
   [Route("api/[controller]")]
   public class ConfigController : Controller

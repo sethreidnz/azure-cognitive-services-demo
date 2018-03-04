@@ -1,4 +1,4 @@
-namespace CognitiveServicesDemo.Api.Options
+namespace CognitiveServicesDemo.Options
 {
   public class CognitivesServicesOptions
   {
