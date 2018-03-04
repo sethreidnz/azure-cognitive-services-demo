@@ -6,12 +6,6 @@ import { InputForm } from "./components/InputForm";
 import { Notification } from "../components/Notification";
 
 export class TextAnalytics extends Component {
-  state = {
-    textToAnalyse: "",
-    detectLanguage: false,
-    getKeyPhrases: false,
-    getSentiment: false
-  };
   configIsValid = () => {
     const { config: { textAnalytics } } = this.props;
     return textAnalytics.key && textAnalytics.region;

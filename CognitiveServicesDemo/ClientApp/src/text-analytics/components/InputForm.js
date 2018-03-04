@@ -41,7 +41,7 @@ export class InputForm extends Component {
               <input
                 name="detectLanguage"
                 type="checkbox"
-                value={this.state.detectLanguage}
+                checked={this.state.detectLanguage}
                 onChange={this.handleInputChange}
               />
               Detect Language
@@ -54,7 +54,7 @@ export class InputForm extends Component {
               <input
                 name="getKeyPhrases"
                 type="checkbox"
-                value={this.state.getSentiment}
+                checked={this.state.getSentiment}
                 onChange={this.handleInputChange}
               />
               Get Key Phrases
@@ -67,7 +67,7 @@ export class InputForm extends Component {
               <input
                 name="getSentiment"
                 type="checkbox"
-                value={this.state.getSentiment}
+                checked={this.state.getSentiment}
                 onChange={this.handleInputChange}
               />
               Get Sentiment
