@@ -6,6 +6,8 @@ namespace CognitiveServicesDemo.Options
 
     public CognitiveServiceKey ComputerVision { get; set; }
 
+    public CognitiveServiceKey TextAnalytics { get; set; }
+
     public CognitiveServiceKey BingSearch { get; set; }
   }
 

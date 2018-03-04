@@ -6,6 +6,7 @@ import { getCognitiveServicesConfig } from "./api/config";
 
 import { Navbar } from "./components/Navbar";
 import { Vision } from "./vision";
+import { TextAnalytics } from './text-analytics'
 
 class App extends Component {
   state = {
@@ -32,6 +33,11 @@ class App extends Component {
                 exact
                 path="/"
                 render={() => <Vision config={cognitiveServicesConfig} />}
+              />
+              <Route
+                exact
+                path="/text-analytics"
+                render={() => <TextAnalytics config={cognitiveServicesConfig} />}
               />
             </div>
           </section>

@@ -18,11 +18,9 @@ export class Vision extends Component {
     searchText: null
   };
   configIsValid = () => {
-    const {
-      config: { computerVision, bingSearch }
-    } = this.props;
+    const { config: { computerVision, bingSearch } } = this.props;
     return computerVision.key && computerVision.region && bingSearch.key;
-  }
+  };
   getThumbnailUrl = image => {
     return `${image.thumbnailUrl}&${qs.stringify({ w: 300, h: 300 })}`;
   };
@@ -79,15 +77,15 @@ export class Vision extends Component {
       analysisData
     } = this.state;
     if (!this.configIsValid()) {
-      return <Notification type="danger" text="Please go to the readme and configure the your user secrets for Computer Vision and Bing Search API"/>
+      return (
+        <Notification
+          type="danger"
+          text="Please go to the readme and configure the your user secrets for Computer Vision and Bing Search API"
+        />
+      );
     }
     return (
-      <div
-        className="vision"
-        ref={element => {
-          this.container = element;
-        }}
-      >
+      <div className="vision">
         <header>
           <h1 className="title is-1">Microsoft Computer Vision</h1>
         </header>

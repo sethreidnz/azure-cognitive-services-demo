@@ -42,9 +42,10 @@ Now you are run the application but you will need to add the Azure Cognitive Ser
 
 #### Computer Vision API
 
-- Open the [Computer Vision page here](https://azure.microsoft.com/en-us/services/cognitive-services/computer-vision/)
+- Open the [Computer Vision API page here](https://azure.microsoft.com/en-us/services/cognitive-services/computer-vision/)
 - Click on "Try Computer Vision API"
-- Click Get API Key and login
+- Click Get API Key on the right of "Computer Vision API"
+- Accept the terms and follow the login prompt
 - Below you can see the key and the region highlighted in red:
 
   ![Endpoint Region](/images/ComputerVisionApiKey.JPG)
@@ -59,11 +60,33 @@ dotnet user-secrets set CognitiveServices:ComputerVision:Key ComputerVisionKeyHe
 dotnet user-secrets set CognitiveServices:ComputerVision:Region ComputerVisionRegionHere
 ```
 
+#### Text Analytics API
+
+- Open the [Text Analytics API page here](https://azure.microsoft.com/en-us/services/cognitive-services/computer-vision/)
+- Click on "Try Text Analytics API"
+- Click Get API Key on the right of "Text Analytics API"
+- Accept the terms and follow the login prompt
+- Below you can see the key and the region highlighted in red:
+
+  ![Endpoint Region](/images/TextAnalyticsKey.JPG)
+
+**Add Key and region to the app**
+
+Open up a terminal or command window and run the from the root of the project replacing **TextAnalyticsKeyHere** and **TextAnalyticsRegionHere** with your key and region as in the above screenshot:
+
+``` bash
+cd CognitiveServicesDemo
+dotnet user-secrets set CognitiveServices:TextAnalytics:Key TextAnalyticsKeyHere
+dotnet user-secrets set CognitiveServices:TextAnalytics:Region TextAnalyticsRegionHere
+```
+
+
 #### Bing Search APIs v7
 
-- Open the [Bing Search v7 page here](https://azure.microsoft.com/en-us/services/cognitive-services/bing-web-search-api/)
+- Open the [Bing Search APIs page here](https://azure.microsoft.com/en-us/services/cognitive-services/bing-web-search-api/)
 - Click on "Try Bing Web Search API"
-- Click Get API Key and login
+- Click Get API Key on the right of "Bing Search APIs v7"
+- Accept the terms and follow the login prompt
 - Below you can see the key highlighted in red:
 
   ![Endpoint Region](/images/BingSearchApiKey.JPG)
