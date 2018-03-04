@@ -13,13 +13,14 @@ export const SearchResults = ({
   getThumbnailUrl,
   onImageClick
 }) => {
-  
-  if (isSearching) return <Loader />; 
+  if (isSearching) return <Loader />;
   if (!searchResults) return <p>Type in the search box to search</p>;
-  if (searchText && searchResults && searchResults.length === 0) return <p>No results found</p>;
+  if (searchText && searchResults && searchResults.length === 0)
+    return <p>No results found</p>;
 
   return (
     <div className="image-search-results">
+      <p>Click an image to analyse</p>
       <ImageList>
         {searchResults.map(image => (
           <ImageListItem
