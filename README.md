@@ -5,11 +5,6 @@ This repository was created for a talk given at [Wellington Azure Meetup](https:
 - [Computer Vision API](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/home)
 - [Bing Image Search API](https://docs.microsoft.com/en-us/azure/cognitive-services/bing-image-search/overview)
 
-The app is made up of two parts:
-
-- **src/api** - A .Net Core WebAPI application
-- **src/client** - A React JavaScript app
-
 ## Pre-requisites
 
 - [.NET Core](https://www.microsoft.com/net/learn/get-started/windows)
