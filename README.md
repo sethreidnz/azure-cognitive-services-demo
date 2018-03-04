@@ -22,23 +22,23 @@ To get started first clone the repository:
 git clone https://github.com/sethreidnz/azure-cognitive-services-demo
 ```
 
-Restore packages for the api
+Restore packages for the api by running the following from the root of the project
 
 ``` bash
-cd src/api
+cd src/CognitiveServicesDemo
 dotnet restore
 ```
 
-Restore packages for the client
+Restore packages for the client app by running the following from the root of the project
 
 ``` bash
-cd src/client
+cd src/CognitiveServicesDemo/ClientApp
 npm install
 ``` 
 
 ### Configuring your free Cognitive Service keys
 
-Now you are ready to run both the applications but you will need to add the Azure Cognitive Service Keys for the services used. You can go to the site and get free keys by logging in with a Microsoft, Facebook, LinkedIn or Github account. You will need to add a user secrets to the project for each of your keys.
+Now you are run the application but you will need to add the Azure Cognitive Service Keys for the services used. You can go to the site and get free keys by logging in with a Microsoft, Facebook, LinkedIn or Github account. You will need to add a user secrets to the project for each of your keys.
 
 #### Computer Vision API
 
