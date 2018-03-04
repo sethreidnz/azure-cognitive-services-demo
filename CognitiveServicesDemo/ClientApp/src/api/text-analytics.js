@@ -1,8 +1,39 @@
 import qs from "qs";
 const host = "api.cognitive.microsoft.com";
-const detectLanguagePath = "/vision/v1.0/analyze";
-const keyPhrasesPath = "/vision/v1.0/analyze";
-const sentimentPath = "/vision/v1.0/analyze";
+const detectLanguagePath = "/text/analytics/v2.0/languages";
+const keyPhrasesPath = "/text/analytics/v2.0/keyPhrases";
+const sentimentPath = "/text/analytics/v2.0/sentiment";
+
+export const analyseText = async (
+  text,
+  shouldDetectLanguage,
+  shouldGetKeyPhrases,
+  shouldGetSentiment,
+  subscriptionKey,
+  region
+) => {
+
+  let language;
+  if (shouldDetectLanguage) {
+    language = await detectLanguage([text], subscriptionKey, region);
+  }
+
+  let keyPhrases;
+  if (shouldGetKeyPhrases) {
+    keyPhrases = await getKeyPhrases([text], subscriptionKey, region);
+  }
+
+  let sentiment;
+  if (shouldGetSentiment) {
+    sentiment = await getSentiment([text], subscriptionKey, region);
+  }
+
+  return {
+    language,
+    keyPhrases,
+    sentiment
+  }
+}
 
 export const detectLanguage = async (
   texts,
@@ -28,18 +59,17 @@ export const detectLanguage = async (
   return await response.json();
 };
 
-export const getSentiment = async(
+export const getKeyPhrases = async(
   texts,
   subscriptionKey,
-  region,
-  params = {}
+  region
 ) => {
   const documents = generateDocuments(texts)
   const body = {
     documents
   };
   const response = await fetch(
-    `https://${region}.${host}${sentimentPath}?${qs.stringify(params)}`,
+    `https://${region}.${host}${keyPhrasesPath}`,
     {
       method: "POST",
       headers: {
@@ -55,15 +85,14 @@ export const getSentiment = async(
 export const getSentiment = async (
   texts,
   subscriptionKey,
-  region,
-  params = {}
+  region
 ) => {
   const documents = generateDocuments(texts)
   const body = {
     documents
   };
   const response = await fetch(
-    `https://${region}.${host}${keyPhrasesPath}?${qs.stringify(params)}`,
+    `https://${region}.${host}${sentimentPath}`,
     {
       method: "POST",
       headers: {
@@ -77,5 +106,5 @@ export const getSentiment = async (
 };
 
 const generateDocuments = (arrayOfText) => {
-  return text.map((text, index) => { return { id: index, text: '' } });
+  return arrayOfText.map((text, index) => { return { id: index, text } });
 }
