@@ -22,7 +22,7 @@ To get started first clone the repository:
 git clone https://github.com/sethreidnz/azure-cognitive-services-demo
 ```
 
-Restore packages for the api by running the following from the root of the project
+Restore packages for the API by running the following from the root of the project
 
 ``` bash
 cd src/CognitiveServicesDemo
