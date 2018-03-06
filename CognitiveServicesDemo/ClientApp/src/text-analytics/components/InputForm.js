@@ -16,6 +16,11 @@ export class InputForm extends Component {
       [name]: value
     });
   };
+  handleKeyPress = event => {
+    if (event.key === 'Enter') {
+      this.submit();
+    }
+  }
   submit = () => {
     const { analyseText } = this.props;
     const { textToAnalyse, detectLanguage, getKeyPhrases, getSentiment } = this.state;
@@ -32,6 +37,11 @@ export class InputForm extends Component {
               type="search"
               value={this.state.textToAnalyse}
               onChange={this.handleInputChange}
+              onKeyPress={event => {
+                if (event.key === 'Enter') {
+                  this.submit()
+                }
+              }}
             />
           </div>
         </div>

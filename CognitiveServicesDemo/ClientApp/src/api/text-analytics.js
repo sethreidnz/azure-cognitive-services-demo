@@ -27,7 +27,6 @@ export const analyseText = async (
   if (shouldGetSentiment) {
     sentiment = await getSentiment([text], subscriptionKey, region);
   }
-
   return {
     language,
     keyPhrases,
