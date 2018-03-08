@@ -80,6 +80,30 @@ dotnet user-secrets set CognitiveServices:TextAnalytics:Key TextAnalyticsKeyHere
 dotnet user-secrets set CognitiveServices:TextAnalytics:Region TextAnalyticsRegionHere
 ```
 
+#### Bing Entity Search API
+
+- Open the [Bing Entity Search API page here](https://azure.microsoft.com/en-us/services/cognitive-services/bing-entity-search-api/)
+- Click on "Try Bing Entity Search API"
+- Click Get API Key on the right of "Bing Entity Search API"
+- Accept the terms and follow the login prompt
+- Below you can see the key highlighted in red:
+
+  ![Endpoint Region](/images/BingEntitySearchApiKey.JPG)
+
+**Add Key and region to the app**
+
+Open up a terminal or command window and run the from the root of the project replacing **BingSearchKeyHere** with your key as in the above screenshot:
+
+``` bash
+cd CognitiveServicesDemo
+dotnet user-secrets set CognitiveServices:BingSearch:Key BingSearchKeyHere
+```
+
+If you need to set the region for individual API keys you created then you can run the following (this is for ComputerVision):
+
+``` bash
+dotnet user-secrets set CognitiveServices:ComputerVision:Region RegionHere
+```
 
 #### Bing Search APIs v7
 

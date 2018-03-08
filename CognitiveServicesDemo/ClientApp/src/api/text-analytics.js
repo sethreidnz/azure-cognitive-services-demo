@@ -1,4 +1,5 @@
 import qs from "qs";
+import { entitySearch } from "./bing";
 const host = "api.cognitive.microsoft.com";
 const detectLanguagePath = "/text/analytics/v2.0/languages";
 const keyPhrasesPath = "/text/analytics/v2.0/keyPhrases";
@@ -9,8 +10,10 @@ export const analyseText = async (
   shouldDetectLanguage,
   shouldGetKeyPhrases,
   shouldGetSentiment,
+  shouldGetEntities,
   subscriptionKey,
-  region
+  region,
+  entitySearchKey
 ) => {
 
   let language;
@@ -27,10 +30,17 @@ export const analyseText = async (
   if (shouldGetSentiment) {
     sentiment = await getSentiment([text], subscriptionKey, region);
   }
+
+  let entities;
+  if (shouldGetEntities) {
+    entities = await entitySearch([text], subscriptionKey, region);
+  }
+
   return {
     language,
     keyPhrases,
-    sentiment
+    sentiment,
+    entities
   }
 }
 

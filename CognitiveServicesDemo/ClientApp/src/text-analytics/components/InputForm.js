@@ -23,17 +23,18 @@ export class InputForm extends Component {
   }
   submit = () => {
     const { analyseText } = this.props;
-    const { textToAnalyse, detectLanguage, getKeyPhrases, getSentiment } = this.state;
-    analyseText(textToAnalyse, detectLanguage, getKeyPhrases, getSentiment);
+    const { textToAnalyse, detectLanguage, getKeyPhrases, getSentiment, getEntities } = this.state;
+    analyseText(textToAnalyse, detectLanguage, getKeyPhrases, getSentiment, getEntities);
   }
   render() {
     return (
       <div className="input-form">
         <div className="field">
           <div className="control">
-            <input
+            <textarea
               name="textToAnalyse"
-              className="input text-to-analyse"
+              className="textarea"
+              placeholder="Enter text for analysis"
               type="search"
               value={this.state.textToAnalyse}
               onChange={this.handleInputChange}
@@ -78,6 +79,19 @@ export class InputForm extends Component {
                 name="getSentiment"
                 type="checkbox"
                 checked={this.state.getSentiment}
+                onChange={this.handleInputChange}
+              />
+              Get Sentiment
+            </label>
+          </div>
+        </div>
+        <div className="field">
+          <div className="control">
+            <label className="checkbox">
+              <input
+                name="getEntities"
+                type="checkbox"
+                checked={this.state.getEntities}
                 onChange={this.handleInputChange}
               />
               Get Sentiment

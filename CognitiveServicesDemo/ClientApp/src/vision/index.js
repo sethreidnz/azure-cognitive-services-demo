@@ -54,6 +54,7 @@ export class Vision extends Component {
       const searchResults = await imageSearch(searchText, bingSearch.key, {
         count: 5
       });
+      debugger;
       this.setState({
         isSearching: false,
         searchResults,
