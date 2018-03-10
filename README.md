@@ -4,6 +4,7 @@ This repository was created for a talk given at [Wellington Azure Meetup](https:
 
 - [Computer Vision API](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/home)
 - [Bing Image Search API](https://docs.microsoft.com/en-us/azure/cognitive-services/bing-image-search/overview)
+- [Content Moderator](https://azure.microsoft.com/en-us/services/cognitive-services/content-moderator)
 
 ## Pre-requisites
 
