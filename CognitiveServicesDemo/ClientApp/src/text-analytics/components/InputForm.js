@@ -18,9 +18,10 @@ export class InputForm extends Component {
     });
   };
   handleKeyPress = event => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' || event.keyCode === 13) {
       event.preventDefault();
       this.submit();
+      return false;
     }
   }
   submit = () => {

@@ -17,10 +17,15 @@ export const analyseImage = async (
       method: "POST",
       headers: {
         "Ocp-Apim-Subscription-Key": subscriptionKey,
-        'content-type': 'application/json'
+        "content-type": "application/json"
       },
       body: JSON.stringify(body)
     }
   );
+  if (!response.ok) {
+    throw new Error(
+      `Something went wrong with the request: ${response.statusText} `
+    );
+  }
   return await response.json();
 };

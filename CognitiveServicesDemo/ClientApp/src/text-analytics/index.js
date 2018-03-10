@@ -31,7 +31,9 @@ export class TextAnalytics extends Component {
     getSentiment,
     getEntities
   ) => {
-    const { config: { textAnalytics, bingSearch } } = this.props;
+    const {
+      config: { textAnalytics, bingSearch, contentModerator }
+    } = this.props;
     this.setState({
       isAnalysing: true,
       analysisResult: null
@@ -39,6 +41,8 @@ export class TextAnalytics extends Component {
     const analysisResults = await analyseText(
       textAnalytics.key,
       textAnalytics.region,
+      contentModerator.key,
+      contentModerator.region,
       bingSearch.key,
       text,
       detectLanguage,

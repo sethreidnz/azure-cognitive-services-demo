@@ -1,12 +1,12 @@
 import qs from "qs";
 const host = "api.cognitive.microsoft.com";
 const imageSearchPath = "/bing/v7.0/images/search";
-const entitiesEntpoint = "/bing/v7.0/entities";
+const entitiesEndpoint = "/bing/v7.0/entities";
 
 export const imageSearch = async (
   subscriptionKey,
-  params = {},
-  searchString
+  searchString,
+  params = {}
 ) => {
   params.q = searchString;
   const response = await fetch(
@@ -18,6 +18,11 @@ export const imageSearch = async (
       }
     }
   );
+  if (!response.ok) {
+    throw new Error(
+      `Something went wrong with the request: ${response.statusText} `
+    );
+  }
   return await response.json();
 };
 
@@ -25,12 +30,12 @@ export const entitySearch = async (
   subscriptionKey,
   searchString,
   params = {},
-  market = 'en-us'
+  market = "en-us"
 ) => {
   params.q = searchString;
   params.mkt = market;
   const response = await fetch(
-    `https://${host}${entitiesEntpoint}?${qs.stringify(params)}`,
+    `https://${host}${entitiesEndpoint}?${qs.stringify(params)}`,
     {
       method: "GET",
       headers: {
@@ -38,5 +43,10 @@ export const entitySearch = async (
       }
     }
   );
+  if (!response.ok) {
+    throw new Error(
+      `Something went wrong with the request: ${response.statusText} `
+    );
+  }
   return await response.json();
 };
