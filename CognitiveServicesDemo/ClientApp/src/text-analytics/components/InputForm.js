@@ -6,7 +6,8 @@ export class InputForm extends Component {
     textToAnalyse: "",
     detectLanguage: true,
     getKeyPhrases: true,
-    getSentiment: true
+    getSentiment: true,
+    getEntities: true
   };
   handleInputChange = event => {
     const target = event.target;
@@ -18,6 +19,7 @@ export class InputForm extends Component {
   };
   handleKeyPress = event => {
     if (event.key === 'Enter') {
+      event.preventDefault();
       this.submit();
     }
   }
@@ -94,7 +96,7 @@ export class InputForm extends Component {
                 checked={this.state.getEntities}
                 onChange={this.handleInputChange}
               />
-              Get Sentiment
+              Get Entities
             </label>
           </div>
         </div>

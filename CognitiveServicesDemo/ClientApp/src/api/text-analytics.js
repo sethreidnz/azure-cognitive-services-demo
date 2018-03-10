@@ -6,34 +6,34 @@ const keyPhrasesPath = "/text/analytics/v2.0/keyPhrases";
 const sentimentPath = "/text/analytics/v2.0/sentiment";
 
 export const analyseText = async (
+  textAnalyticsKey,
+  textAnalyticsRegion,
+  entitySearchKey,
   text,
   shouldDetectLanguage,
   shouldGetKeyPhrases,
   shouldGetSentiment,
-  shouldGetEntities,
-  subscriptionKey,
-  region,
-  entitySearchKey
+  shouldGetEntities
 ) => {
 
   let language;
   if (shouldDetectLanguage) {
-    language = await detectLanguage([text], subscriptionKey, region);
+    language = await detectLanguage(textAnalyticsKey, textAnalyticsRegion, [text]);
   }
 
   let keyPhrases;
   if (shouldGetKeyPhrases) {
-    keyPhrases = await getKeyPhrases([text], subscriptionKey, region);
+    keyPhrases = await getKeyPhrases(textAnalyticsKey, textAnalyticsRegion, [text]);
   }
 
   let sentiment;
   if (shouldGetSentiment) {
-    sentiment = await getSentiment([text], subscriptionKey, region);
+    sentiment = await getSentiment(textAnalyticsKey, textAnalyticsRegion, [text]);
   }
 
   let entities;
   if (shouldGetEntities) {
-    entities = await entitySearch([text], subscriptionKey, region);
+    entities = await entitySearch(entitySearchKey, text);
   }
 
   return {
@@ -45,17 +45,18 @@ export const analyseText = async (
 }
 
 export const detectLanguage = async (
-  texts,
   subscriptionKey,
   region,
+  texts,
   params = {}
 ) => {
   const documents = generateDocuments(texts)
   const body = {
     documents
   };
+  console.log(body);
   const response = await fetch(
-    `https://${region}.${host}${detectLanguagePath}?${qs.stringify(params)}`,
+    `https://${region}.${host}${detectLanguagePath}`,
     {
       method: "POST",
       headers: {
@@ -65,13 +66,17 @@ export const detectLanguage = async (
       body: JSON.stringify(body)
     }
   );
+  if(!response.ok) {
+    debugger;
+  }
   return await response.json();
 };
 
 export const getKeyPhrases = async(
-  texts,
   subscriptionKey,
-  region
+  region,
+  texts,
+  params = {}
 ) => {
   const documents = generateDocuments(texts)
   const body = {
@@ -92,9 +97,10 @@ export const getKeyPhrases = async(
 };
 
 export const getSentiment = async (
-  texts,
   subscriptionKey,
-  region
+  region,
+  texts,
+  params = {}
 ) => {
   const documents = generateDocuments(texts)
   const body = {

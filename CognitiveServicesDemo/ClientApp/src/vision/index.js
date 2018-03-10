@@ -26,16 +26,16 @@ export class Vision extends Component {
   };
   selectImage = async image => {
     const {
-      config: { defaultRegion, computerVision: { key, region } }
+      config: { computerVision: { key, region } }
     } = this.props;
     this.setState({
       selectedImage: image,
       isAnalysing: true
     });
     const analysedImageData = await analyseImage(
-      image.contentUrl,
       key,
-      region ? region : defaultRegion,
+      region,
+      image.contentUrl,
       {
         visualFeatures: "Categories,Tags,Description,Faces,ImageType,Color",
         details: "Celebrities,Landmarks"
@@ -51,7 +51,7 @@ export class Vision extends Component {
     const { config: { bingSearch } } = this.props;
     if (searchText) {
       this.setState({ isSearching: true, selectedImage: null });
-      const searchResults = await imageSearch(searchText, bingSearch.key, {
+      const searchResults = await imageSearch(bingSearch.key, searchText, {
         count: 5
       });
       debugger;

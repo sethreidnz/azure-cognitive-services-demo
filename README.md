@@ -80,29 +80,24 @@ dotnet user-secrets set CognitiveServices:TextAnalytics:Key TextAnalyticsKeyHere
 dotnet user-secrets set CognitiveServices:TextAnalytics:Region TextAnalyticsRegionHere
 ```
 
-#### Bing Entity Search API
+#### Content Moderator
 
-- Open the [Bing Entity Search API page here](https://azure.microsoft.com/en-us/services/cognitive-services/bing-entity-search-api/)
-- Click on "Try Bing Entity Search API"
-- Click Get API Key on the right of "Bing Entity Search API"
-- Accept the terms and follow the login prompt
-- Below you can see the key highlighted in red:
+- Open the [Content Moderator page here](https://azure.microsoft.com/en-us/services/cognitive-services/content-moderator/)
+- Click on "Get Started"
+- Click Sign In and use your your Microsoft Account to login
+- Once logged into the content moderator over over the cog in the header and select *credentials*
+- Below you can see the key and the region highlighted in red:
 
-  ![Endpoint Region](/images/BingEntitySearchApiKey.JPG)
+  ![Endpoint Region](/images/ContentModeratorKey.JPG)
 
 **Add Key and region to the app**
 
-Open up a terminal or command window and run the from the root of the project replacing **BingSearchKeyHere** with your key as in the above screenshot:
+Open up a terminal or command window and run the from the root of the project replacing **ContentModeratorKeyHere** and **ContentModeratorRegionHere** with your key and region as in the above screenshot:
 
 ``` bash
 cd CognitiveServicesDemo
-dotnet user-secrets set CognitiveServices:BingSearch:Key BingSearchKeyHere
-```
-
-If you need to set the region for individual API keys you created then you can run the following (this is for ComputerVision):
-
-``` bash
-dotnet user-secrets set CognitiveServices:ComputerVision:Region RegionHere
+dotnet user-secrets set CognitiveServices:ContentModerator:Key ContentModeratorKeyHere
+dotnet user-secrets set CognitiveServices:ContentModerator:Region ContentModeratorRegionHere
 ```
 
 #### Bing Search APIs v7

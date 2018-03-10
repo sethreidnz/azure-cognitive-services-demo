@@ -3,9 +3,9 @@ const host = "api.cognitive.microsoft.com";
 const computerVisionPath = "/vision/v1.0/analyze";
 
 export const analyseImage = async (
-  imageUrl,
   subscriptionKey,
   region,
+  imageUrl,
   params = {}
 ) => {
   const body = {

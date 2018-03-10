@@ -4,9 +4,9 @@ const imageSearchPath = "/bing/v7.0/images/search";
 const entitiesEntpoint = "/bing/v7.0/entities";
 
 export const imageSearch = async (
-  searchString,
   subscriptionKey,
-  params = {}
+  params = {},
+  searchString
 ) => {
   params.q = searchString;
   const response = await fetch(
@@ -22,8 +22,8 @@ export const imageSearch = async (
 };
 
 export const entitySearch = async (
-  searchString,
   subscriptionKey,
+  searchString,
   params = {},
   market = 'en-us'
 ) => {

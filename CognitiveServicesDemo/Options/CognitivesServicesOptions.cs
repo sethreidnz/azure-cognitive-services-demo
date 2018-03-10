@@ -8,6 +8,8 @@ namespace CognitiveServicesDemo.Options
 
     public CognitiveServiceKey TextAnalytics { get; set; }
 
+    public CognitiveServiceKey ContentModerator { get; set; }
+
     public CognitiveServiceKey BingSearch { get; set; }
   }
 

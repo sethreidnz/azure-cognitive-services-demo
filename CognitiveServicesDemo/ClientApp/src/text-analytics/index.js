@@ -12,22 +12,39 @@ export class TextAnalytics extends Component {
     analysisResults: null
   };
   configIsValid = () => {
-    const { config: { textAnalytics } } = this.props;
-    return textAnalytics.key && textAnalytics.region;
+    const {
+      config: { textAnalytics, bingSearch, contentModerator }
+    } = this.props;
+    return (
+      textAnalytics.key &&
+      textAnalytics.region &&
+      bingSearch.key &&
+      contentModerator &&
+      contentModerator.key &&
+      contentModerator.region
+    );
   };
-  analyseText = async (text, detectLanguage, getKeyPhrases, getSentiment) => {
-    const { config: { textAnalytics } } = this.props;
+  analyseText = async (
+    text,
+    detectLanguage,
+    getKeyPhrases,
+    getSentiment,
+    getEntities
+  ) => {
+    const { config: { textAnalytics, bingSearch } } = this.props;
     this.setState({
       isAnalysing: true,
       analysisResult: null
     });
     const analysisResults = await analyseText(
+      textAnalytics.key,
+      textAnalytics.region,
+      bingSearch.key,
       text,
       detectLanguage,
       getKeyPhrases,
       getSentiment,
-      textAnalytics.key,
-      textAnalytics.region
+      getEntities
     );
     this.setState({
       isAnalysing: false,
@@ -40,7 +57,7 @@ export class TextAnalytics extends Component {
       return (
         <Notification
           type="danger"
-          text={`Configuration is invalid. Please refer to the readme to configure the your user secrets for Text Analytics API`}
+          text={`Configuration is invalid. Please refer to the readme to configure the your user secrets for Text Analytics API, Content Moderator and Bing Search APIs v7`}
         />
       );
     }
@@ -54,7 +71,10 @@ export class TextAnalytics extends Component {
             <InputForm analyseText={this.analyseText} />
           </div>
           <div className="column is-two-thirds">
-            <TextAnalyticsResults results={analysisResults} isAnalysing={isAnalysing} />
+            <TextAnalyticsResults
+              results={analysisResults}
+              isAnalysing={isAnalysing}
+            />
           </div>
         </div>
       </section>

@@ -22,7 +22,7 @@ export const Navbar = () => (
       <div className="navbar-menu">
         <div className="navbar-start">
           <Link className="navbar-item" to="/">
-            Vision
+            Computer Vision
           </Link>
           <Link className="navbar-item" to="/text-analytics">
             Text Analytics
