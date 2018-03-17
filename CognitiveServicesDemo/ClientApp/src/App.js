@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bulma/css/bulma.css";
-import "./App.css";
 import { getCognitiveServicesConfig } from "./api/config";
 
 import { Navbar } from "./components/Navbar";
 import { Vision } from "./vision";
-import { TextAnalytics } from './text-analytics'
+import { TextAnalytics } from "./text-analytics";
+import { Speech } from "./speech";
 
 class App extends Component {
   state = {
@@ -37,7 +37,14 @@ class App extends Component {
               <Route
                 exact
                 path="/text-analytics"
-                render={() => <TextAnalytics config={cognitiveServicesConfig} />}
+                render={() => (
+                  <TextAnalytics config={cognitiveServicesConfig} />
+                )}
+              />
+              <Route
+                exact
+                path="/speech"
+                render={() => <Speech config={cognitiveServicesConfig} />}
               />
             </div>
           </section>

@@ -120,10 +120,23 @@ cd CognitiveServicesDemo
 dotnet user-secrets set CognitiveServices:BingSearch:Key BingSearchKeyHere
 ```
 
-If you need to set the region for individual API keys you created then you can run the following (this is for ComputerVision):
+#### Bing Speech API
+
+- Open the [Bing Speech API page here](https://azure.microsoft.com/en-us/services/cognitive-services/speech/)
+- Click on "Try Bing Speech API"
+- Click Get API Key on the right of "Bing Speech API"
+- Accept the terms and follow the login prompt
+- Below you can see the key highlighted in red:
+
+  ![Endpoint Region](/images/BingSearchApiKey.JPG)
+
+**Add Key and region to the app**
+
+Open up a terminal or command window and run the from the root of the project replacing **BingSpeechKeyHere** with your key as in the above screenshot:
 
 ``` bash
-dotnet user-secrets set CognitiveServices:ComputerVision:Region RegionHere
+cd CognitiveServicesDemo
+dotnet user-secrets set CognitiveServices:BingSpeech:Key BingSpeechKeyHere
 ```
 
 ### Running the app

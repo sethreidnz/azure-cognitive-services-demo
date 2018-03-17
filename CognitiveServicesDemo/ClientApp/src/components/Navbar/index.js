@@ -27,6 +27,9 @@ export const Navbar = () => (
           <Link className="navbar-item" to="/text-analytics">
             Text Analytics
           </Link>
+          <Link className="navbar-item" to="/speech">
+            Speech
+          </Link>
         </div>
       </div>
     </div>

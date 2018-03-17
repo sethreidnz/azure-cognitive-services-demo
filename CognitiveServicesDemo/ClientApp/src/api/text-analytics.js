@@ -1,4 +1,3 @@
-import qs from "qs";
 import { entitySearch } from "./bing";
 import { moderateText } from "./content-moderator";
 const host = "api.cognitive.microsoft.com";
