@@ -45,7 +45,7 @@ export class FaceApi extends Component {
         <header>
           <h1 className="title is-1">Microsoft Face API</h1>
         </header>
-        <div className="columns">
+        <div className="columns input-area">
           <InputForm onSubmit={this.onSubmitUrl} />
         </div>
         <div className="columns">

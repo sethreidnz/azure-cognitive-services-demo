@@ -11,9 +11,6 @@ export const detectFaces = async (
   const body = {
     url: imageUrl
   };
-  params.returnFaceLandmarks = params.returnFaceLandmarks
-    ? params.returnFaceLandmarks
-    : true;
   params.returnFaceAttributes = params.returnFaceAttributes
     ? params.returnFaceAttributes
     : "age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise";
