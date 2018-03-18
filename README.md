@@ -139,6 +139,26 @@ cd CognitiveServicesDemo
 dotnet user-secrets set CognitiveServices:BingSpeech:Key BingSpeechKeyHere
 ```
 
+#### Face API
+
+- Open the [Face API page here](https://azure.microsoft.com/en-us/services/cognitive-services/face/)
+- Click on "Try Face API"
+- Click Get API Key on the right of "Face API"
+- Accept the terms and follow the login prompt
+- Below you can see the key and region highlighted in red:
+
+  ![Endpoint Region](/images/FaceApiKey.JPG)
+
+**Add Key and region to the app**
+
+Open up a terminal or command window and run the from the root of the project replacing **FaceApiKeyHere** and **FaceApiRegionHere** with your key and region as in the above screenshot:
+
+``` bash
+cd CognitiveServicesDemo
+dotnet user-secrets set CognitiveServices:FaceApi:Key FaceApiKeyHere
+dotnet user-secrets set CognitiveServices:FaceApi:Region FaceApiRegionHere
+```
+
 ### Running the app
 
 **From Visual Studio Code**

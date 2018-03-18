@@ -6,7 +6,7 @@ import { getCognitiveServicesConfig } from "./api/config";
 import { Navbar } from "./components/Navbar";
 import { Vision } from "./vision";
 import { TextAnalytics } from "./text-analytics";
-import { Speech } from "./speech";
+import { FaceApi } from "./face-api";
 
 class App extends Component {
   state = {
@@ -43,8 +43,10 @@ class App extends Component {
               />
               <Route
                 exact
-                path="/speech"
-                render={() => <Speech config={cognitiveServicesConfig} />}
+                path="/face-api"
+                render={() => (
+                  <FaceApi config={cognitiveServicesConfig} />
+                )}
               />
             </div>
           </section>

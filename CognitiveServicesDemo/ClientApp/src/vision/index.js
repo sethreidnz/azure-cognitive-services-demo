@@ -68,14 +68,6 @@ export class Vision extends Component {
     }
   };
   render() {
-    const {
-      searchText,
-      isSearching,
-      isAnalysing,
-      selectedImage,
-      searchResults,
-      analysisData
-    } = this.state;
     if (!this.configIsValid()) {
       return (
         <Notification
@@ -84,6 +76,14 @@ export class Vision extends Component {
         />
       );
     }
+    const {
+      searchText,
+      isSearching,
+      isAnalysing,
+      selectedImage,
+      searchResults,
+      analysisData
+    } = this.state;
     return (
       <div className="vision">
         <header>

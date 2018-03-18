@@ -56,7 +56,6 @@ export class TextAnalytics extends Component {
     });
   };
   render() {
-    const { isAnalysing, analysisResults } = this.state;
     if (!this.configIsValid()) {
       return (
         <Notification
@@ -65,6 +64,7 @@ export class TextAnalytics extends Component {
         />
       );
     }
+    const { isAnalysing, analysisResults } = this.state;
     return (
       <section className="vision container">
         <header>

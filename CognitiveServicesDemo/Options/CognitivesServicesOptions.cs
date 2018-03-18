@@ -13,6 +13,8 @@ namespace CognitiveServicesDemo.Options
     public CognitiveServiceKey BingSearch { get; set; }
 
     public CognitiveServiceKey BingSpeech { get; set; }
+
+    public CognitiveServiceKey FaceApi { get; set; }
   }
 
   public class CognitiveServiceKey
