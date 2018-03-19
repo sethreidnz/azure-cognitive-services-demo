@@ -16,7 +16,8 @@ export class Vision extends Component {
     isAnalysing: false,
     searchResults: null,
     selectedImage: null,
-    searchText: null
+    searchText: null,
+    originalSearchText: null
   };
   configIsValid = () => {
     const { config: { computerVision, bingSearch } } = this.props;
@@ -49,7 +50,7 @@ export class Vision extends Component {
   searchImages = async searchText => {
     const { config: { bingSearch } } = this.props;
     if (searchText) {
-      this.setState({ isSearching: true, selectedImage: null });
+      this.setState({ isSearching: true, originalSearchText: searchText, selectedImage: null });
       const searchResults = await imageSearch(bingSearch.key, searchText, {
         count: 5
       });
@@ -96,7 +97,7 @@ export class Vision extends Component {
         </header>
         <SearchInput
           type="search"
-          searchQuery={this.state.searchQuery}
+          searchQuery={this.state.originalSearchText}
           search={this.searchImages}
           isSpellCorrected={isSpellCorrected}
           showingResultsForText={

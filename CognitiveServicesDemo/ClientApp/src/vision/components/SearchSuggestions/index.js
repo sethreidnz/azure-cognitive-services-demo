@@ -12,7 +12,7 @@ export const SearchSuggestions = ({ suggestions, search }) => {
       <p>Search Suggestions:</p>
       <ul>
       {topSuggestions.map((suggestion, index, array) => (
-        <li><a onClick={() => search(suggestion.text)}>{suggestion.text}</a></li>
+        <li key={index}><a onClick={() => search(suggestion.text)}>{suggestion.text}</a></li>
       ))}
       </ul>
     </div>

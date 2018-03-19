@@ -9,7 +9,7 @@ export class SearchInput extends Component {
   };
   timeout = 0;
   componentWillReceiveProps(nextProps) {
-    if(!nextProps.isSpellCorrected && nextProps.searchQuery && nextProps.searchQuery !== this.state.searchQuery) {
+    if(nextProps.searchQuery && nextProps.searchQuery !== this.state.searchQuery) {
       this.setState({ searchQuery: nextProps.searchQuery });
     }
   }
