@@ -5,6 +5,7 @@ import "./Vision.css";
 
 import { Notification } from "../components/Notification";
 import { SearchInput } from "./components/SearchInput";
+import { SearchSuggestions } from "./components/SearchSuggestions";
 import { SearchResults } from "./components/SearchResults";
 import { AnalysedImage } from "./components/AnalysedImage";
 import { analyseImage } from "../api/computer-vision";
@@ -25,9 +26,7 @@ export class Vision extends Component {
     return `${image.thumbnailUrl}&${qs.stringify({ w: 300, h: 300 })}`;
   };
   selectImage = async image => {
-    const {
-      config: { computerVision: { key, region } }
-    } = this.props;
+    const { config: { computerVision: { key, region } } } = this.props;
     this.setState({
       selectedImage: image,
       isAnalysing: true
@@ -56,16 +55,21 @@ export class Vision extends Component {
       });
       this.setState({
         isSearching: false,
-        searchResults,
-        searchText
+        searchResults: searchResults,
+        searchText: searchResults.searchText
       });
     } else {
       this.setState({
         isSearching: false,
         searchResults: null,
-        searchText: null
+        searchText: null,
+        selectedImage: null
       });
     }
+  };
+  updateSearchTerm = searchQuery => {
+    this.setState({ searchQuery });
+    this.searchImages(searchQuery);
   };
   render() {
     if (!this.configIsValid()) {
@@ -84,6 +88,7 @@ export class Vision extends Component {
       searchResults,
       analysisData
     } = this.state;
+    const isSpellCorrected = searchResults && searchResults.spellingCorrected;
     return (
       <div className="vision">
         <header>
@@ -91,8 +96,20 @@ export class Vision extends Component {
         </header>
         <SearchInput
           type="search"
-          value={this.state.searchQuery}
+          searchQuery={this.state.searchQuery}
           search={this.searchImages}
+          isSpellCorrected={isSpellCorrected}
+          showingResultsForText={
+            isSpellCorrected ? searchResults.searchText : null
+          }
+        />
+        <SearchSuggestions
+          search={this.updateSearchTerm}
+          suggestions={
+            searchResults && searchResults.relatedSearches.length > 0
+              ? searchResults.relatedSearches
+              : null
+          }
         />
         <SearchResults
           selectedImage={selectedImage}
@@ -102,6 +119,9 @@ export class Vision extends Component {
           getThumbnailUrl={this.getThumbnailUrl}
           isSearching={isSearching}
         />
+        {!isSearching &&
+          !selectedImage &&
+          searchResults && <p>Click an image to analyse</p>}
         {selectedImage && (
           <AnalysedImage
             selectedImage={selectedImage}

@@ -20,7 +20,6 @@ export const SearchResults = ({
 
   return (
     <div className="image-search-results">
-      <p>Click an image to analyse</p>
       <ImageList>
         {searchResults.map(image => (
           <ImageListItem

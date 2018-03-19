@@ -1,3 +1,7 @@
 .search-input {
   margin-bottom: 10px;
 }
+
+.search-input .showing-results-for {
+  padding: 10px 0;
+}
