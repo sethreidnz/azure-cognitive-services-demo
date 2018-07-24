@@ -50,11 +50,45 @@ export class TextAnalytics extends Component {
       getSentiment,
       getEntities
     );
+    console.log(analysisResults);
     this.setState({
       isAnalysing: false,
       analysisResults
     });
   };
+  tomsAnalyseText = async (
+    text,
+    detectLanguage,
+    getKeyPhrases,
+    getSentiment,
+    getEntities
+  ) => {
+    const {
+      config: { textAnalytics, bingSearch, contentModerator }
+    } = this.props;
+    this.setState({
+      isAnalysing: true,
+      analysisResult: null
+    });
+    const analysisResults = await analyseText(
+      textAnalytics.key,
+      textAnalytics.region,
+      contentModerator.key,
+      contentModerator.region,
+      bingSearch.key,
+      text,
+      detectLanguage,
+      getKeyPhrases,
+      getSentiment,
+      getEntities
+    );
+
+    this.setState({
+      isAnalysing: false,
+    });
+    return analysisResults
+  };
+
   render() {
     if (!this.configIsValid()) {
       return (
@@ -72,7 +106,10 @@ export class TextAnalytics extends Component {
         </header>
         <div className="columns">
           <div className="column is-third">
-            <InputForm analyseText={this.analyseText} />
+            <InputForm
+              analyseText={this.analyseText}
+              tomsAnalyseText={this.tomsAnalyseText}
+            />
           </div>
           <div className="column is-two-thirds">
             <TextAnalyticsResults

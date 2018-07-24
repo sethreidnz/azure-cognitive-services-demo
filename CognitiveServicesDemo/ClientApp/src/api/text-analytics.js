@@ -43,18 +43,19 @@ export const analyseText = async (
     entities = await entitySearch(entitySearchKey, text);
   }
 
-  const contentModeration = await moderateText(
-    contentModeratorKey,
-    contentModeratorRegion,
-    text
-  );
+  // const contentModeration = await moderateText(
+  //   contentModeratorKey,
+  //   contentModeratorRegion,
+  //   text
+  // );
 
   return {
+    text,
     language,
     keyPhrases,
     sentiment,
     entities,
-    profanity: contentModeration && contentModeration.Terms ? contentModeration.Terms : []
+    // profanity: contentModeration && contentModeration.Terms ? contentModeration.Terms : []
   };
 };
 

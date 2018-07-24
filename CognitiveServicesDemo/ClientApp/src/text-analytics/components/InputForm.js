@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./InputForm.css";
+import CSVReader from "react-csv-reader";
 
 export class InputForm extends Component {
   state = {
@@ -18,17 +19,69 @@ export class InputForm extends Component {
     });
   };
   handleKeyPress = event => {
-    if (event.key === 'Enter' || event.keyCode === 13) {
+    if (event.key === "Enter" || event.keyCode === 13) {
       event.preventDefault();
       this.submit();
       return false;
     }
-  }
+  };
+  //   createPayload = (data) => {
+  //     let newPayload = [];
+  // for(let i = 0; i < data.length; i++){
+  //   newPayload[i] = data[i][0]
+  // }
+  // console.log(newPayload);
+  // }
+
+handleForce = data => {
+    const { tomsAnalyseText } = this.props;
+    let newPayload = [];
+    for (let i = 0; i < data.length; i++) {
+      newPayload[i] = data[i][0];
+    }
+    let newReturn = [];
+    for (let i = 0; i < newPayload.length; i++) {
+      setTimeout(function () {
+      let newObjectToStore = {};
+      let objectRecieved = {};
+      newObjectToStore.originalQuery = newPayload[i]
+  tomsAnalyseText(newPayload[i], true, true, true, true)
+        .then(textReturn =>
+        newObjectToStore.return = { keyPhrases: 
+          textReturn.keyPhrases.documents[0].keyPhrases,
+        sentiment : textReturn.sentiment.documents[0].score
+        });
+      // if(objectRecieved.keyPhrases && objectRecieved.keyPhrases.documents && objectRecieved.keyPhrases.documents[0] && objectRecieved.keyPhrases.documents[0].keyPhrases){
+      //   newObjectToStore.keyPhrases = objectRecieved.keyPhrases.documents[0].keyPhrases
+      // };
+      // if (objectRecieved.sentiment && objectRecieved.sentiment.documents && objectRecieved.sentiment.documents[0] && objectRecieved.sentiment.documents[0].score){
+      //   newObjectToStore.sentiment = objectRecieved.sentiment.documents[0].score
+      // };
+
+      newReturn[i] = newObjectToStore;
+      console.log(newObjectToStore);
+      console.log(newReturn);
+    }, 5000);
+    }
+  };
   submit = () => {
     const { analyseText } = this.props;
-    const { textToAnalyse, detectLanguage, getKeyPhrases, getSentiment, getEntities } = this.state;
-    analyseText(textToAnalyse, detectLanguage, getKeyPhrases, getSentiment, getEntities);
-  }
+    const {
+      textToAnalyse,
+      detectLanguage,
+      getKeyPhrases,
+      getSentiment,
+      getEntities
+    } = this.state;
+    analyseText(
+      textToAnalyse,
+      detectLanguage,
+      getKeyPhrases,
+      getSentiment,
+      getEntities
+    );
+  };
+
   render() {
     return (
       <div className="input-form">
@@ -42,8 +95,8 @@ export class InputForm extends Component {
               value={this.state.textToAnalyse}
               onChange={this.handleInputChange}
               onKeyPress={event => {
-                if (event.key === 'Enter') {
-                  this.submit()
+                if (event.key === "Enter") {
+                  this.submit();
                 }
               }}
             />
@@ -101,12 +154,19 @@ export class InputForm extends Component {
             </label>
           </div>
         </div>
-        <a
-          className="button"
-          onClick={this.submit}
-        >
+        <a className="button" onClick={this.submit}>
           Analyse Text
         </a>
+        <div className="CSV">
+          {/* {reader} */}
+          <div className="CSV-Loader">
+            <CSVReader
+              cssClass="react-csv-input"
+              label="Select CSV to Analyse"
+              onFileLoaded={this.handleForce}
+            />
+          </div>
+        </div>
       </div>
     );
   }
