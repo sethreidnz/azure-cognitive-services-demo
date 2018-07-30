@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./InputForm.css";
 import CSVReader from "react-csv-reader";
+import CsvCreator from "react-csv-creator";
+const yes = true;
 
 export class InputForm extends Component {
   state = {
@@ -8,8 +10,57 @@ export class InputForm extends Component {
     detectLanguage: true,
     getKeyPhrases: true,
     getSentiment: true,
-    getEntities: true
+    getEntities: true,
+    CSVData: null,
+    test: false,
+    counter: 0
   };
+  componentDidUpdate() {
+    if (
+      this.state.spreadsheet &&
+      !this.state.test &&
+      this.state.spreadsheet[0] &&
+      this.state.spreadsheet[0].return
+    ) {
+      const headers = [
+        {
+          id: "first",
+          display: "Original Text"
+        },
+        {
+          id: "second",
+          display: "Sentiment score"
+        },
+        {
+          id: "third",
+          display: "Key Words"
+        }
+      ];
+
+      const rows = [];
+      for (let i = 0; i < this.state.spreadsheet.length; i++) {
+        rows[i] = {
+          first: this.state.spreadsheet[i].originalQuery,
+          second: this.state.spreadsheet[i].return
+            ? this.state.spreadsheet[i].return.sentiment
+              ? this.state.spreadsheet[i].return.sentiment
+              : ""
+            : "",
+          third: this.state.spreadsheet[i].return
+            ? this.state.spreadsheet[i].return.keyPhrases
+              ? [this.state.spreadsheet[i].return.keyPhrases]
+              : ""
+            : ""
+        };
+      }
+      this.setState({
+        test: true,
+        headers: headers,
+        rows: rows
+      });
+    }
+  }
+
   handleInputChange = event => {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
@@ -25,44 +76,33 @@ export class InputForm extends Component {
       return false;
     }
   };
-  //   createPayload = (data) => {
-  //     let newPayload = [];
-  // for(let i = 0; i < data.length; i++){
-  //   newPayload[i] = data[i][0]
-  // }
-  // console.log(newPayload);
-  // }
 
-handleForce = data => {
+  handleForce = data => {
     const { tomsAnalyseText } = this.props;
     let newPayload = [];
     for (let i = 0; i < data.length; i++) {
       newPayload[i] = data[i][0];
     }
     let newReturn = [];
-    for (let i = 0; i < newPayload.length; i++) {
-      setTimeout(function () {
-      let newObjectToStore = {};
-      let objectRecieved = {};
-      newObjectToStore.originalQuery = newPayload[i]
-  tomsAnalyseText(newPayload[i], true, true, true, true)
-        .then(textReturn =>
-        newObjectToStore.return = { keyPhrases: 
-          textReturn.keyPhrases.documents[0].keyPhrases,
-        sentiment : textReturn.sentiment.documents[0].score
-        });
-      // if(objectRecieved.keyPhrases && objectRecieved.keyPhrases.documents && objectRecieved.keyPhrases.documents[0] && objectRecieved.keyPhrases.documents[0].keyPhrases){
-      //   newObjectToStore.keyPhrases = objectRecieved.keyPhrases.documents[0].keyPhrases
-      // };
-      // if (objectRecieved.sentiment && objectRecieved.sentiment.documents && objectRecieved.sentiment.documents[0] && objectRecieved.sentiment.documents[0].score){
-      //   newObjectToStore.sentiment = objectRecieved.sentiment.documents[0].score
-      // };
-
-      newReturn[i] = newObjectToStore;
-      console.log(newObjectToStore);
-      console.log(newReturn);
-    }, 5000);
-    }
+    setTimeout(() => {
+      for (let i = 0; i < newPayload.length; i++) {
+          let newObjectToStore = {};
+          newObjectToStore.originalQuery = newPayload[i];
+          setTimeout(() => {
+          tomsAnalyseText(newPayload[i], false, true, true, false).then(
+            textReturn =>
+              (newObjectToStore.return = {
+                keyPhrases: textReturn.keyPhrases.documents[0].keyPhrases,
+                sentiment: textReturn.sentiment.documents[0].score
+              })
+          )        }, 20000);
+          ;
+          newReturn[i] = newObjectToStore;
+          if (newReturn.length === data.length) {
+            this.setState({ spreadsheet: newReturn });
+          }
+      }
+    }, 20000);
   };
   submit = () => {
     const { analyseText } = this.props;
@@ -166,6 +206,19 @@ handleForce = data => {
               onFileLoaded={this.handleForce}
             />
           </div>
+          {this.state.test ? (
+            <div className="csv-save">
+              <CsvCreator
+                filename="my_cool_csv"
+                headers={this.state.headers}
+                rows={this.state.rows}
+              >
+                <p>Download CSV</p>
+              </CsvCreator>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     );
